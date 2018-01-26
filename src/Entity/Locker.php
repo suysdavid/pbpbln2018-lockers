@@ -72,4 +72,9 @@ class Locker
         $this->accessCode = null;
         $this->status = self::STATUS_FREE;
     }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
 }
