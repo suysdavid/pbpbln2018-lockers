@@ -18,8 +18,8 @@
     {% endif %}
     <form action="{{ path('locker_pickup') }}" method="post">
         <div>
-            <label>Access code:</label>
-            <input type="text" name="access_code"/>
+            <label for="access_code">Access code:</label>
+            <input id="access_code" type="text" name="access_code"/>
             <button type="submit">Send</button>
         </div>
     </form>
