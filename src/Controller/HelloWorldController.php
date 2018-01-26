@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class HelloWorldController
+class HelloWorldController extends Controller
 {
     /**
      * @Route("/hello", name="hello", methods={"GET"})
@@ -14,6 +15,6 @@ class HelloWorldController
      */
     public function hello(): Response
     {
-        return new Response('Hello David');
+        return $this->render('hello.html.twig', ['name' => 'David']);
     }
 }
