@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Services\TestInterface;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -10,9 +12,12 @@ class HelloWorldController
 {
     private $twig;
 
-    public function __construct(Environment $twig)
+    private $test;
+
+    public function __construct(Environment $twig, TestInterface $test)
     {
         $this->twig = $twig;
+        $this->test = $test;
     }
 
     /**
