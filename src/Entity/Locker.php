@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Exception\WrongAccessCodeException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,7 +68,7 @@ class Locker
             throw new \LogicException('Locker is not in use');
         }
         if ($accessCode !== $this->accessCode) {
-            throw new \InvalidArgumentException('Invalid access code');
+            throw WrongAccessCodeException::forLocker($this);
         }
         $this->accessCode = null;
         $this->status = self::STATUS_FREE;
