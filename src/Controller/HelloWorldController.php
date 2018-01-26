@@ -3,21 +3,21 @@
 namespace App\Controller;
 
 use App\Services\TestInterface;
-use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 class HelloWorldController
 {
-    private $twig;
-
     private $test;
+    private $twig;
+    private $greeting;
 
-    public function __construct(Environment $twig, TestInterface $test)
+    public function __construct(Environment $twig, TestInterface $test, string $greeting)
     {
-        $this->twig = $twig;
         $this->test = $test;
+        $this->twig = $twig;
+        $this->greeting = $greeting;
     }
 
     /**
@@ -30,6 +30,14 @@ class HelloWorldController
      */
     public function hello(): Response
     {
-        return new Response($this->twig->render('hello.html.twig', ['name' => 'David']));
+        return new Response(
+            $this->twig->render(
+                'hello.html.twig',
+                [
+                    'greeting' => $this->greeting,
+                    'name' => $this->test->getName(),
+                ]
+            )
+        );
     }
 }
